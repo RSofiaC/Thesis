@@ -1,8 +1,8 @@
 //Regina Cantu ITP Thesis 2018 - Heartbeat
 
-const int ledONE = 11;
-const int ledTWO = 10;
-const int ledTHREE  = 9;
+const int ledONE = 3;
+const int ledTWO = 4;
+const int ledTHREE  = 2;
 
 
 
@@ -16,9 +16,9 @@ void setup() {
 }
 
 void loop() {
-  long espera = random (200, 800);
-    long espera1 = random (200, 800);
-      long espera2 = random (200, 800);
+  long espera = random (20, 800);
+    long espera1 = random (20, 800);
+      long espera2 = random (20, 800);
   digitalWrite(ledONE, HIGH);
   delay(espera);
    digitalWrite(ledONE, LOW);
