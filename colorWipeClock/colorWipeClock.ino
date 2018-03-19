@@ -27,6 +27,7 @@ int defineSpeed;
 
 
 void setup() {
+  Serial.begin (9600);
   // This is for Trinket 5V 16MHz, you can remove these three lines if you are not using a Trinket
   #if defined (__AVR_ATtiny85__)
     if (F_CPU == 16000000) clock_prescale_set(clock_div_1);
@@ -40,27 +41,31 @@ void setup() {
 
 void loop() {
 
+//Tryin to make it light up every minute
+colorWipe(strip.Color(0,230,25), 62400);
 
-defineSpeed = (map( analogRead(potControl), 0, 1024, 50, 500 ) );
- colorWipe(strip.Color(0,230,25), defineSpeed); //Aqua
+////Change speed of change acording to pot reading
+//defineSpeed = (map( analogRead(potControl), 0, 1024, 50, 500 ) );
+// colorWipe(strip.Color(0,230,25), defineSpeed); //Aqua
   
-  // Some example procedures showing how to display to the pixels:
+// //Some example procedures showing how to display to the pixels:
  // colorWipe(strip.Color(255, 0, 0), 50); // Red
 //  colorWipe(strip.Color(0, 255, 0), 50); // Green
 //  colorWipe(strip.Color(0, 0, 255), 50); // Blue
 //colorWipe(strip.Color(0, 0, 0, 255), 50); // White RGBW
 
-//Set color value to pot reading
+////Set color value to pot reading
 //currentColourValue = (255 - map( analogRead(potControl), 0, 1024, 0, 255 ) );
 //colorWipe(strip.Color(currentColourValue, currentColourValue - 100, currentColourValue - 50), 50, );
-colorWipe(strip.Color(0,0,0),defineSpeed); //Turn Off
+colorWipe(strip.Color(0,0,0),50); //Turn Off
 }
 
 // Fill the dots one after the other with a color
-void colorWipe(uint32_t c, uint8_t wait) {
+void colorWipe(uint32_t c, uint32_t wait) {
   for(uint16_t i=0; i<strip.numPixels(); i++) {
     strip.setPixelColor(i, c);
     strip.show();
+    Serial.println (i);
     delay(wait);
   }
 }
